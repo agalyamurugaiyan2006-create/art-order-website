@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Drawings & Projects</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    text-align: center;
-}
-.card {
-    max-width: 500px;
-    margin: auto;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 20px;
-}
-button {
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-}
-</style>
+    <title>Place Your Order</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        (function () {
+            emailjs.init({
+                publicKey: "rcDk7JUtpNS3W0TIy",
+            });
+        })();
+
+        function sendMail(event) {
+            event.preventDefault();
+
+            const params = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                message: document.getElementById("message").value,
+            };
+
+            emailjs.send("service_jbebjw7", "template_nwh7gkk", params)
+                .then(function () {
+                    alert("Order submitted successfully!");
+                    document.getElementById("orderForm").reset();
+                })
+                .catch(function (error) {
+                    alert("Failed to send order. Please try again.");
+                    console.log(error);
+                });
+        }
+    </script>
 </head>
-<body>
-<div class="card">
-    <h1>Order Your Creative Work</h1>
-    <p>✏️ Drawings</p>
-    <p>🎨 Art Projects</p>
-    <p>💡 Project Ideas</p>
 
-    <h3>Place Your Order</h3>
+<body style="font-family: Arial; text-align: center; margin-top: 50px;">
 
-    <form>
-        <input type="text" placeholder="Your Name" style="width:90%;padding:10px;"><br><br>
-        <textarea placeholder="Describe what you need" rows="5" style="width:90%;padding:10px;"></textarea><br><br>
-        <button type="submit">Submit</button>
+    <h1>Order Your Drawings & Projects</h1>
+
+    <form id="orderForm" onsubmit="sendMail(event)">
+        <input type="text" id="name" placeholder="Your Name" required style="width:300px;padding:10px;"><br><br>
+
+        <input type="email" id="email" placeholder="Your Email" required style="width:300px;padding:10px;"><br><br>
+
+        <textarea id="message" placeholder="Describe your order" required style="width:300px;height:150px;padding:10px;"></textarea><br><br>
+
+        <button type="submit" style="padding:10px 20px;">Submit Order</button>
     </form>
-</div>
+
 </body>
 </html>
