@@ -1,51 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Place Your Order</title>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karthi Art Store</title>
 
-    <script>
-        (function () {
-            emailjs.init({
-                publicKey: "rcDk7JUtpNS3W0TIy",
-            });
-        })();
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+margin:0;
+padding:20px;
+}
 
-        function sendMail(event) {
-            event.preventDefault();
+h1{
+text-align:center;
+margin-bottom:30px;
+}
 
-            const params = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                message: document.getElementById("message").value,
-            };
+.gallery{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+}
 
-            emailjs.send("service_jbebjw7", "template_nwh7gkk", params)
-                .then(function () {
-                    alert("Order submitted successfully!");
-                    document.getElementById("orderForm").reset();
-                })
-                .catch(function (error) {
-                    alert("Failed to send order. Please try again.");
-                    console.log(error);
-                });
-        }
-    </script>
+.card{
+width:320px;
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.card-content{
+padding:15px;
+}
+
+.price{
+font-size:24px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.btn{
+display:inline-block;
+margin-top:15px;
+padding:12px 20px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+</style>
 </head>
 
-<body style="font-family: Arial; text-align: center; margin-top: 50px;">
+<body>
 
-    <h1>Order Your Drawings & Projects</h1>
+<h1>Our Products</h1>
 
-    <form id="orderForm" onsubmit="sendMail(event)">
-        <input type="text" id="name" placeholder="Your Name" required style="width:300px;padding:10px;"><br><br>
+<div class="gallery">
 
-        <input type="email" id="email" placeholder="Your Email" required style="width:300px;padding:10px;"><br><br>
+<div class="card">
+<img src="drawing1.jpg">
+<div class="card-content">
+<h2>Custom Drawing</h2>
+<p>Beautiful hand-made drawing.</p>
+<p class="price">₹200</p>
+<a class="btn" href="https://wa.me/91YOURNUMBER?text=Hi%20I%20want%20to%20order%20Custom%20Drawing">Order on WhatsApp</a>
+</div>
+</div>
 
-        <textarea id="message" placeholder="Describe your order" required style="width:300px;height:150px;padding:10px;"></textarea><br><br>
+<div class="card">
+<img src="drawing2.jpg">
+<div class="card-content">
+<h2>Portrait Art</h2>
+<p>Premium portrait artwork.</p>
+<p class="price">₹300</p>
+<a class="btn" href="https://wa.me/91YOURNUMBER?text=Hi%20I%20want%20to%20order%20Portrait%20Art">Order on WhatsApp</a>
+</div>
+</div>
 
-        <button type="submit" style="padding:10px 20px;">Submit Order</button>
-    </form>
+<div class="card">
+<img src="project.jpg">
+<div class="card-content">
+<h2>Project Ideas</h2>
+<p>Creative school and college projects.</p>
+<p class="price">₹150</p>
+<a class="btn" href="https://wa.me/91YOURNUMBER?text=Hi%20I%20want%20Project%20Ideas">Order on WhatsApp</a>
+</div>
+</div>
+
+</div>
 
 </body>
 </html>
